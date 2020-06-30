@@ -1,0 +1,20 @@
+---
+kind: pipeline
+type: docker
+name: default
+
+steps:
+- name: rebase to upstream
+  image: alpine/git
+  commands:
+  - git stash
+  - git remote add upstream-temp https://git.cloudron.io/cloudron/vault-app.git || true
+  - git fetch upstream-temp
+  - git pull --rebase upstream-temp master
+  - git remote remove upstream-temp
+  - git stash apply || true
+
+- name: build
+  image: fbartels/cloudron-cli
+  commands:
+  - DOCKER_REPO=fbartels make build

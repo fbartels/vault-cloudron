@@ -1,8 +1,16 @@
 {
-  "id": "com.vault.cloudron",
-  "version": "0.1.0",
+  "id": "io.vaultproject.cloudronapp",
+  "version": "0.3.0",
+  "title": "Vault",
+  "author": "Vault Project",
+  "tagline": "Manage Secrets and Protect Sensitive Data",
+  "description": "file://DESCRIPTION.md",
   "minBoxVersion": "5.3.0",
+  "forumUrl": "https://forum.cloudron.io/category/94/vault",
+  "documentationUrl": "https://cloudron.io/documentation/apps/vault/",
   "healthCheckPath": "/",
+  "website": "https://www.vaultproject.io/",
+  "contactEmail": "support@cloudron.io",
   "httpPort": 8200,
   "addons": {
     "localstorage": {},
@@ -11,5 +19,13 @@
   "capabilities": [
     "mlock"
   ],
-  "manifestVersion": 2
+  "tags": [ "secret", "encryption", "hashicorp", "password", "key" ],
+  "manifestVersion": 2,
+  "mediaLinks": [
+    "https://cloudron-app-screenshots.s3.amazonaws.com/io.vaultproject.cloudronapp/4b61cc8961974c3f47fbc86aaca4dfab7e782bc7/vault-ui-wizard.png",
+    "https://cloudron-app-screenshots.s3.amazonaws.com/io.vaultproject.cloudronapp/4b61cc8961974c3f47fbc86aaca4dfab7e782bc7/replication.png",
+    "https://cloudron-app-screenshots.s3.amazonaws.com/io.vaultproject.cloudronapp/4b61cc8961974c3f47fbc86aaca4dfab7e782bc7/unseal.png"
+  ],
+  "icon": "file://logo.png",
+  "changelog": "file://CHANGELOG"
 }
