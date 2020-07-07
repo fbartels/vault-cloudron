@@ -1,5 +1,5 @@
+.dockerignore
 .git
 .gitignore
-.dockerignore
 node_modules
 test/*
