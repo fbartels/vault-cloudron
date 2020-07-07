@@ -19,7 +19,7 @@ ENV \
 ENV VAULT_VERSION=1.4.3
 RUN mkdir -p /app/pkg /app/code && \
     chown -R cloudron:cloudron /app/code /app/pkg
-RUN wget https://releases.hashicorp.com/vault/1.4.2/vault_${VAULT_VERSION}_linux_amd64.zip  && \
+RUN wget https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip  && \
     unzip vault_${VAULT_VERSION}_linux_amd64.zip -d /app/code && \
     rm -f /app/code/vault_${VAULT_VERSION}_linux_amd64.zip
 

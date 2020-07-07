@@ -1,0 +1,3 @@
+- use official health endpoint
+  - https://www.vaultproject.io/api-docs/system/health
+  - does need extra configuration to also respond with 200 when sealed and uninitialized

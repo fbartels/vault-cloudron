@@ -1,17 +1,29 @@
 #!/bin/bash
 set -eu
 
-set -x
+[[ -z "${CLOUDRON_LDAP_SERVER:-}" ]] && echo "Cloudron LDAP is not enabled"
 
-# configure ldap
+if [[ $# -ne 1 ]]; then
+    echo "usage: enable-ldap.sh <root-token>"
+    exit 1
+fi
 
-/app/code/vault login
-/app/code/vault auth enable ldap
-/app/code/vault write auth/ldap/config \
+# the vault login stashes the raw root token in $HOME/.vault-token
+rm -rf /tmp/vault/home && mkdir -p /tmp/vault/home
+export HOME=/tmp/vault/home
+
+root_token=$1
+echo $root_token | vault login -
+
+# must disable ldap to overwrite the config
+vault auth disable ldap
+vault auth enable ldap
+vault write auth/ldap/config \
   url="${CLOUDRON_LDAP_URL}" \
   userdn="${CLOUDRON_LDAP_USERS_BASE_DN}" \
   userattr=username \
   discoverdn=true \
-  groupdn="${CLOUDRON_LDAP_GROUPS_BASE_DN}" \
   binddn="${CLOUDRON_LDAP_BIND_DN}" \
   bindpass="${CLOUDRON_LDAP_BIND_PASSWORD}"
+
+echo "LDAP login enabled"
